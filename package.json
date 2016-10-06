@@ -1,0 +1,32 @@
+{
+  "name": "rest_api_mapping",
+  "version": "1.0.0",
+  "description": "REST API CRUD untuk pemetaan kebocoran",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": " "
+  },
+  "keywords": [
+    "rest",
+    "node",
+    "mongodb",
+    "crud"
+  ],
+  "author": "agsen",
+  "license": " ",
+  "bugs": {
+    "url": " "
+  },
+  "homepage": " ",
+  "dependencies": {
+    "bcrypt": "^0.8.7",
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "mongoose": "^4.6.2",
+    "validator": "^6.0.0"
+  }
+}
