@@ -3,6 +3,7 @@ var express = require('express'),
     bodyParser = require('body-parser');
 var port = 8080;
 var router = express.Router();
+var path = require("path");
 
 var Data_node = require('./app/models/data_node');
 
@@ -12,6 +13,7 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 var mongoose = require('mongoose');
+//mongoose.connect('mongodb://agsen:agsen@ds021166.mlab.com:21166/data_node');
 mongoose.connect('mongodb://localhost:27017/data_node');
 
 router.get('/',function (req,res) {
@@ -63,5 +65,12 @@ router.route('/semua_data_node')
     });
 
 app.use('/api',router); // prefix for 'router'
+
+app.use(express.static(__dirname + '/public'));
+
+app.get('/grafik',function(req,res){
+	res.sendFile(path.join(__dirname +'/public/views/chart.html'));
+});
+
 app.listen(port); // this service will listen on port defined at point 1
 console.log('services started at port : '+port);

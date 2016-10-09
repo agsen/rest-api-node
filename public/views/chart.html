@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+    <head>
+        <title>Grafik Data Sensor</title>
+        <script type = "text/javascript" src = "assets/js/jquery.min.js"></script>
+        <script type="text/javascript" src=" assets/js/jquery.canvasjs.min.js"></script>
+        <script type = "text/javascript" language = "javascript">
+            var listData = [];
+            $.ajax({
+                async: false,
+                type: 'GET',
+                url: "/api/semua_data_node",
+                dataType: 'json',
+                success: function (jd) {
+                    for (i = 0; i < jd.length; i++) {
+                        nilai_y = Number(jd[i].konsentrasi_gas);
+                        nilai_x = i + 1;
+                        node = {x: nilai_x, y: nilai_y};
+                        console.log(nilai_x);
+                        listData.push(node);
+                        console.log(listData[i].y);
+                    }
+                }
+            });
+            var listTes = [];
+            tes = {x: 1, y: Number("1000")}
+            tes2 = {x: 10, y: 800}
+            listTes.push(tes);
+            listTes.push(tes2);
+            console.log(listTes[0].y);
+            console.log(listData[0].y);
+            $(function () {
+                //Better to construct options first and then pass it as a parameter
+                console.log(tes);
+                var options = {
+                    title: {
+                        text: "Grafik data node"
+                    },
+                    animationEnabled: true,
+                    data: [
+                        {
+                            type: "spline", //change it to line, area, column, pie, etc
+                            dataPoints: listData
+                        }
+                    ]
+                };
+                $("#chartContainer").CanvasJSChart(options);
+            });
+        </script>
+    </head>
+
+    <body>
+
+        <div id="chartContainer" style="height: 300px; width: 70%;"></div>
+
+    </body>
+
+</html>
